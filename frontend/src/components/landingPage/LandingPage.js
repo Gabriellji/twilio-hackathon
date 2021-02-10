@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import banner from "../../assets/banner2.jpg";
+import React from 'react';
+import styled from 'styled-components';
+import banner from '../../assets/banner2.jpg';
+import {Link} from 'react-router-dom'
 
 export default function LandingPage() {
   return (

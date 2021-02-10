@@ -94,6 +94,7 @@ const FormWrapper = styled.form`
 
   input {
     width: 100%;
+    height: 30px;
     margin-bottom: 20px;
   }
 

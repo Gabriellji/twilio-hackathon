@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import banner from '../../assets/banner2.jpg';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 export default function LandingPage() {
   return (
@@ -13,10 +13,10 @@ export default function LandingPage() {
       </MainHeadings>
       <Authentication>
         <Link to="/login">
-          <button>LOG IN</button>
+          <button>Log In</button>
         </Link>
         <Link to="/register">
-          <button>REGISTER</button>
+          <button>Register</button>
         </Link>
       </Authentication>
     </MainContainer>
@@ -27,8 +27,7 @@ const MainContainer = styled.section`
   width: 100vw;
   height: 100vh;
   position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-    url(${banner});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url(${banner});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -11,6 +11,10 @@ const eventSchema = new mongoose.Schema(
             type: String,
             ref: 'User'
         },
+        event_name: {
+            type: String,
+            required: true
+        },
         description: {
             type: String,
             required: true

@@ -17,7 +17,7 @@ const LogInForm = () => {
 
     console.log(details);
     // let response = await fetch(
-    //   `http://localhost:8080/register`,
+    //   `http://localhost:5000/auth`,
 
     //   {
     //     method: "POST",
@@ -36,14 +36,10 @@ const LogInForm = () => {
     <SendMessageWrapper>
       {sentMessage ? (
         <div>
-          {sentMessage === "SENT" && (
-            <p>HERE WE SEE MAIN MAP SECTION</p>
-          )}
-          {sentMessage === "ERROR" && (
-            <p>SOMETHING WENT WRONG</p>
-          )}
+          {sentMessage === "SENT" && <p>HERE WE SEE MAIN MAP SECTION</p>}
+          {sentMessage === "ERROR" && <p>SOMETHING WENT WRONG</p>}
           <button onClick={() => setSentMessage(false)}>
-          TRY AGAIN PLEASE
+            TRY AGAIN PLEASE
           </button>
         </div>
       ) : (
@@ -52,13 +48,16 @@ const LogInForm = () => {
             <h2>LOG IN</h2>
 
             <Email>
-              <label htmlFor="email">Email </label>
-              <input type="email" id="email" required />
+              <input type="email" id="email" placeholder="email" required />
             </Email>
 
             <NameSection>
-              <label htmlFor="password">Password </label>
-              <input type="text" id="password" required />
+              <input
+                type="text"
+                id="password"
+                placeholder="password"
+                required
+              />
             </NameSection>
 
             <button type="submit">{status}</button>

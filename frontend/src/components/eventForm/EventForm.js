@@ -21,7 +21,7 @@ const EventForm = () => {
 
     console.log(details);
     // let response = await fetch(
-    //   `http://localhost:8080/register`,
+    //   `http://localhost:5000/eventForm`,
 
     //   {
     //     method: "POST",

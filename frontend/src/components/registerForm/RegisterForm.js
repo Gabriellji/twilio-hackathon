@@ -16,7 +16,6 @@ const RegisterForm = () => {
     console.log(smsNotification);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Registering...");
@@ -34,7 +33,7 @@ const RegisterForm = () => {
 
     console.log(details);
     // let response = await fetch(
-    //   `http://localhost:8080/register`,
+    //   `http://localhost:5000/register`,
 
     //   {
     //     method: "POST",
@@ -44,7 +43,7 @@ const RegisterForm = () => {
     //     body: JSON.stringify(details),
     //   }
     // );
-    
+
     // setStatus("Submit");
     // let result = await response.json();
     // setSentMessage(result.status);
@@ -68,39 +67,38 @@ const RegisterForm = () => {
           <form onSubmit={handleSubmit}>
             <h2>REGISTER</h2>
             <NameSection>
-              
-              <input type="text" id="name" placeholder='Name' required />
+              <input type="text" id="name" placeholder="Name" required />
             </NameSection>
             <Email>
-              
-              <input type="email" id="email" placeholder='Email' required />
+              <input type="email" id="email" placeholder="Email" required />
             </Email>
 
             <NameSection>
-             
-              <input type="phone" id="phone" placeholder='Phone' required />
+              <input
+                type="text"
+                id="password"
+                placeholder="Password"
+                required
+              />
             </NameSection>
 
             <NameSection>
-              <label htmlFor="city">City </label>
-              <input type="text" id="city" required />
+              <input type="text" id="city" placeholder="City" required />
             </NameSection>
             <NameSection>
-              <label htmlFor="cityArea">City area </label>
-              <input type="text" id="cityArea" />
-            </NameSection>
-            <NameSection>
-              <label htmlFor="password">Password </label>
-              <input type="text" id="password" required />
+              <input type="text" id="cityArea" placeholder="City area" />
             </NameSection>
 
+            <NameSection>
+              <input type="phone" id="phone" placeholder="Phone" required />
+            </NameSection>
             <NameSection>
               <input
                 type="checkbox"
                 id="check1"
                 onChange={handleSmsNotification}
               />
-              <label for="check1">
+              <label htmlFor="check1">
                 Agree to receive SMS notifications about new events{" "}
               </label>
             </NameSection>

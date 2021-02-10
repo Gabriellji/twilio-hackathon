@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       require: false,
     },
+    is_checked: {
+        type: Boolean,
+        default: true,
+    }
   },
   { timestamps: true }
 );

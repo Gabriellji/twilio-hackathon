@@ -21,14 +21,17 @@ const UserSchema = new mongoose.Schema(
     },
     area: {
       type: String,
-      require: false,
+    },
+    phone: {
+      type: String,
+      require: true,
     },
     is_checked: {
-        type: Boolean,
-        default: true,
+      type: Boolean,
+      default: true,
     },
-    user_events:  Array,
-    subscribed_events: Array
+    user_events: Array,
+    subscribed_events: Array,
   },
   { timestamps: true }
 );

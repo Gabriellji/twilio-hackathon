@@ -18,6 +18,7 @@ router.post(
             'Please enter a password with 6 or more characters'
         ).isLength({ min: 6 }),
         check('city', 'City is required').not().isEmpty(),
+        check('phone', 'Phone number is required').not().isEmpty(),
     ],
     async (req, res) => {
         const errors = validationResult(req)
@@ -25,7 +26,7 @@ router.post(
             return res.status(401).json({ errors: errors.array() })
         }
 
-        const { name, email, password, city, area, is_checked } = req.body
+        const { name, email, password, city, area, phone, is_checked } = req.body
 
         try {
             let user = await User.findOne({ email })
@@ -42,6 +43,7 @@ router.post(
                 password,
                 city,
                 area,
+                phone,
                 is_checked
             })
 

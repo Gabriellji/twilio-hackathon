@@ -1,3 +1,6 @@
+import EventForm from "./components/eventForm/EventForm";
+import LogInForm from "./components/logInForm/LogInForm";
+import RegisterForm from "./components/registerForm/RegisterForm";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from "./components/landingPage/LandingPage";
 import Login from './components/login/Login';
@@ -10,6 +13,10 @@ import JoinEvent from './components/joinEvent/JoinEvent';
 function App() {
   return (
     <div className="App">
+      <h1>Yo</h1>
+      <RegisterForm/>
+      <LogInForm />
+      <EventForm />
       <Switch>
         <Route exact path="/" render={(props) => <LandingPage {...props} />} />
         <Route path="/login" render={(props) => <Login {...props} />} />

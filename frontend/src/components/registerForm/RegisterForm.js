@@ -61,49 +61,25 @@ const RegisterForm = () => {
           </button>
         </div>
       ) : (
-        <FormWrapper>
-          <form onSubmit={handleSubmit}>
-            <h2>REGISTER</h2>
-            <NameSection>
-              <input type="text" id="name" placeholder="Name" required />
-            </NameSection>
-            <Email>
-              <input type="email" id="email" placeholder="Email" required />
-            </Email>
+        
+        <FormWrapper onSubmit={handleSubmit}>
+          <h2>Register</h2>            
+          <input type="text" id="name" placeholder="Name" required />           
+          <input type="email" id="email" placeholder="Email" required />       
+          <input type="text" id="password" placeholder="Password" required />       
+          <input type="text" id="city" placeholder="City" required />            
+          <input type="text" id="cityArea" placeholder="City area" /> 
+          <input type="phone" id="phone" placeholder="Phone" required />            
+          <Checkbox>
+            <input type="checkbox" id="check1" onChange={handleSmsNotification} />
+            <label htmlFor="check1">
+              Agree to receive SMS notifications about new events{" "}
+            </label>
+          </Checkbox>
+                 
 
-            <NameSection>
-              <input
-                type="text"
-                id="password"
-                placeholder="Password"
-                required
-              />
-            </NameSection>
-
-            <NameSection>
-              <input type="text" id="city" placeholder="City" required />
-            </NameSection>
-            <NameSection>
-              <input type="text" id="cityArea" placeholder="City area" />
-            </NameSection>
-
-            <NameSection>
-              <input type="phone" id="phone" placeholder="Phone" required />
-            </NameSection>
-            <NameSection>
-              <input
-                type="checkbox"
-                id="check1"
-                onChange={handleSmsNotification}
-              />
-              <label htmlFor="check1">
-                Agree to receive SMS notifications about new events{" "}
-              </label>
-            </NameSection>
-
-            <button type="submit">{status}</button>
-          </form>
-        </FormWrapper>
+          <button type="submit">{status}</button>
+        </FormWrapper>        
       )}
     </SendMessageWrapper>
   );
@@ -117,69 +93,102 @@ export default RegisterForm;
 // text-align: center;
 // `
 const SendMessageWrapper = styled.div`
-  width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
+  padding: 10%;
 `;
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: right;
   align-items: center;
-  width: 60%;
+  width: 100%;
   border-radius: 10px;
   background-color: white;
+  padding: 10%;
 
-  button {
-    width: 30%;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 10px;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
-`;
 
-const NameSection = styled.div`
   input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+  }  
+
+  button {    
+    width: 100%;
+    margin-bottom: 40px;
+    height: 30px;
+    font-size: 1rem;
+    border: 1px solid #7DC81F;
+    border-radius: 25px;
+    background-color: #7DC81F;
   }
 `;
 
-const Email = styled.div`
+const Checkbox = styled.div`  
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 20px;
+
   input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
+    padding: 0;
+    margin: 0 20px 0 0;
+    width: 25px;
   }
-`;
 
-const Topic = styled.div`
-  select {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
+  label {
+    font-size: 0.8rem;
   }
-`;
+  
+`
 
-const Message = styled.div`
-  textarea {
-    width: 300px;
-    height: 100px;
-    margin: 0 15px;
-  }
-`;
+// const NameSection = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
+
+// const Email = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
+
+// const Topic = styled.div`
+//   select {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
+
+// const Message = styled.div`
+//   textarea {
+//     width: 300px;
+//     height: 100px;
+//     margin: 0 15px;
+//   }
+// `;
 
 // const SendMessageButton = styled.button`
 // font-size: ${({ Initial }) => Initial ? '50px': '20px'}

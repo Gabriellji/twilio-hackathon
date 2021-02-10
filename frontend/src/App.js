@@ -27,7 +27,7 @@ function App() {
         <Route path="/joinEvent" render={(props) => <JoinEvent {...props} />} />        
       </Switch>
 
-      <LandingPage />     
+      {/* <LandingPage />      */}
 
     </div>
   );

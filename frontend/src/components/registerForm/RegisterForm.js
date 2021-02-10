@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { nanoid } from "nanoid";
-// import { Context } from "../../context/Context";
+
 
 const RegisterForm = () => {
   const [status, setStatus] = useState("Register");
   const [sentMessage, setSentMessage] = useState(false);
 
-  const [smsNotification, setSmsNotification] = useState(false);
+  const [is_checked, setSmsNotification] = useState(false);
 
-  // const context = useContext(Context);
-
+  
   const handleSmsNotification = () => {
-    setSmsNotification(!smsNotification);
-    console.log(smsNotification);
+    setSmsNotification(!is_checked);
+    console.log(is_checked);
   };
 
   const handleSubmit = async (e) => {
@@ -28,25 +26,25 @@ const RegisterForm = () => {
       city: city.value,
       cityArea: cityArea.value,
       password: password.value,
-      smsNotification,
+      is_checked,
     };
 
     console.log(details);
-    // let response = await fetch(
-    //   `http://localhost:5000/register`,
+    let response = await fetch(
+      `http://localhost:5000/register`,
 
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json;charset=utf-8",
-    //     },
-    //     body: JSON.stringify(details),
-    //   }
-    // );
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(details),
+      }
+    );
 
-    // setStatus("Submit");
-    // let result = await response.json();
-    // setSentMessage(result.status);
+    setStatus("Submit");
+    let result = await response.json();
+    setSentMessage(result.status);
   };
   return (
     <SendMessageWrapper>

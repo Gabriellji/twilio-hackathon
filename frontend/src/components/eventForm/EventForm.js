@@ -20,21 +20,21 @@ const EventForm = () => {
     };
 
     console.log(details);
-    // let response = await fetch(
-    //   `http://localhost:5000/eventForm`,
+    let response = await fetch(
+      `http://localhost:5000/event`,
 
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json;charset=utf-8",
-    //     },
-    //     body: JSON.stringify(details),
-    //   }
-    // );
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(details),
+      }
+    );
 
-    // setStatus("Submit");
-    // let result = await response.json();
-    // setSentMessage(result.status);
+    setStatus("Submit");
+    let result = await response.json();
+    setSentMessage(result.status);
   };
   return (
     <SendMessageWrapper>

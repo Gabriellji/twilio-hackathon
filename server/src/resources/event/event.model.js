@@ -4,13 +4,34 @@ const eventSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         },
         name: {
             type: String,
             ref: 'User'
         },
         description: {
+            type: String,
+            required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: String,
+            required: true
+        },
+        time: {
+            type: String,
+            required: true
+        },
+        what_to_bring: {
             type: String,
             required: true
         }

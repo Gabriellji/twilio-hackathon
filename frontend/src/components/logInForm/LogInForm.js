@@ -31,7 +31,7 @@ const LogInForm = () => {
           setSentMessage("SENT")
         }
         else {setSentMessage("ERROR")}
-      })
+      }). then(data=> console.log(data))
 };
   return (
     <SendMessageWrapper>

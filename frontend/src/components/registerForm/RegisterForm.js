@@ -7,19 +7,18 @@ const RegisterForm = () => {
   const [sentMessage, setSentMessage] = useState("");
 
   const [is_checked, setSmsNotification] = useState(true);
-
+let details = {}
   
   const handleSmsNotification = () => {
     setSmsNotification(!is_checked);
     console.log(is_checked);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const getDataFromUser = async (e) => {
     setStatus("Registering...");
     const { name, email, phone, city, cityArea, password } = e.target.elements;
 
-    let details = {
+    details = {
       name: name.value,
       email: email.value,
       phone: phone.value,
@@ -28,27 +27,37 @@ const RegisterForm = () => {
       password: password.value,
       is_checked,
     };
-
-    console.log(details);
-fetch(
-      `http://localhost:5000/register`,
-
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({details
-        }),
-      }
-    )
-    .then(response => {
-      if (response.status === 200) {
-        setSentMessage("SENT")
-      }
-      else {setSentMessage("ERROR")}
-    })
-    setStatus("Submit");
+  }
+  const sendDataToBackend = async () => {
+    console.log(details)
+    console.log(JSON.stringify({
+      name: details.name,
+      email: details.email,
+      city: details.city,
+      password: details.password,
+    }))
+    fetch('http://localhost:5000/register', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        name: details.name,
+        email: details.email,
+        city: details.city,
+        password: details.password,
+      })
+    }) .then(res => console.log(res))
+      // .then(response => {
+      //   if (response.status === 200) {
+      //     console.log("yes")
+      //   }
+      //   else {console.log("fuck")}
+      // })
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    getDataFromUser(e).then(sendDataToBackend())
   };
   return (
     <SendMessageWrapper>
@@ -92,7 +101,7 @@ fetch(
             </NameSection>
 
             <NameSection>
-              <input type="phone" id="phone" placeholder="Phone" required />
+              <input type="phone" id="phone" placeholder="Phone"  />
             </NameSection>
             <NameSection>
               <input

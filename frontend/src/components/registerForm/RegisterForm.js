@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 const RegisterForm = () => {
   const [status, setStatus] = useState("Register");
-  const [sentMessage, setSentMessage] = useState(false);
+  const [sentMessage, setSentMessage] = useState("");
 
-  const [is_checked, setSmsNotification] = useState(false);
+  const [is_checked, setSmsNotification] = useState(true);
 
   
   const handleSmsNotification = () => {
@@ -30,7 +30,7 @@ const RegisterForm = () => {
     };
 
     console.log(details);
-    let response = await fetch(
+fetch(
       `http://localhost:5000/register`,
 
       {
@@ -38,13 +38,17 @@ const RegisterForm = () => {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify(details),
+        body: JSON.stringify({details
+        }),
       }
-    );
-
+    )
+    .then(response => {
+      if (response.status === 200) {
+        setSentMessage("SENT")
+      }
+      else {setSentMessage("ERROR")}
+    })
     setStatus("Submit");
-    let result = await response.json();
-    setSentMessage(result.status);
   };
   return (
     <SendMessageWrapper>
@@ -97,7 +101,7 @@ const RegisterForm = () => {
                 onChange={handleSmsNotification}
               />
               <label htmlFor="check1">
-                Agree to receive SMS notifications about new events{" "}
+                Check this box if you don't want to receive SMS notifications about new events
               </label>
             </NameSection>
 

@@ -13,8 +13,8 @@ export default function LandingPage() {
                 <h2>Let's get together and make the world a better place</h2>
             </MainHeadings>
             <Authentication>                
-                <button>Login</button>
-                <button>Register</button>
+                <button><Link to='/login'>Login</Link></button>
+                <button><Link to='/register'>Register</Link></button>
             </Authentication>
         </MainContainer>
     )

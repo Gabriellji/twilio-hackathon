@@ -1,5 +1,11 @@
 import { Route, Switch } from "react-router-dom";
 import LandingPage from "./components/landingPage/LandingPage";
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import MapSection from './components/mapSection/MapSection';
+import MyEvents from './components/myEvents/MyEvents';
+import CreateEvent from './components/createEvent/CreateEvent';
+import JoinEvent from './components/joinEvent/JoinEvent';
 
 function App() {
   return (
@@ -14,7 +20,8 @@ function App() {
         <Route path="/joinEvent" render={(props) => <JoinEvent {...props} />} />        
       </Switch>
 
-      <LandingPage />
+      <LandingPage />     
+
     </div>
   );
 }

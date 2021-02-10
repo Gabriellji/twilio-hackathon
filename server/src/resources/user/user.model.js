@@ -26,7 +26,9 @@ const UserSchema = new mongoose.Schema(
     is_checked: {
         type: Boolean,
         default: true,
-    }
+    },
+    user_events:  Array,
+    subscribed_events: Array
   },
   { timestamps: true }
 );

@@ -13,10 +13,7 @@ import JoinEvent from './components/joinEvent/JoinEvent';
 function App() {
   return (
     <div className="App">
-      <h1>Yo</h1>
-      <RegisterForm/>
-      <LogInForm />
-      <EventForm />
+    
       <Switch>
         <Route exact path="/" render={(props) => <LandingPage {...props} />} />
         <Route path="/login" render={(props) => <Login {...props} />} />

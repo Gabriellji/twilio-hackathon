@@ -10,17 +10,17 @@ const Event = require('../event/event.model')
 // GET /event  
 // gets user events
 
-router.get('/event', auth, async (req, res) => {
+router.get('/my_events', auth, async (req, res) => {
     try {
-        const user = await Event.findOne({
+        const events = await Event.find({
             user: req.user.id,
         }).populate('User', ['name'])
 
-        if (!user) {
+        if (!events) {
             res.status(404).json({ msg: 'There is no events for this user' })
         }
 
-        res.json(user)
+        res.json(events)
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server error')
@@ -33,8 +33,8 @@ router.get('/event', auth, async (req, res) => {
 
 router.get('/all_events', async (req, res) => {
     try {
-        const profiles = await Profile.find().populate('User', ['name'])
-        res.json(profiles)
+        const events = await Event.find()
+        res.json(events)
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server Error')
@@ -43,7 +43,7 @@ router.get('/all_events', async (req, res) => {
 
 // Private
 // POST /event
-// Creates or updates event
+// Creates event
 
 router.post(
     '/',
@@ -104,21 +104,21 @@ router.post(
 )
 
 // Public
-// GET /profiles/user/:user_id
-// gets profiles based on user id
+// GET /event/:event_id
+// gets event based on its id
 
-router.get('/user/:user_id', async (req, res) => {
+router.get('/:event_id', async (req, res) => {
     try {
-        const profile = await Profile.findOne({
-            user: req.params.user_id,
-        }).populate('User', ['name'])
+        const event = await Event.findOne({
+            _id: req.params.event_id,
+        })
 
-        if (!profile) {
+        if (!event) {
             return res
                 .status(404)
-                .json({ msg: 'There is no profile for this user' })
+                .json({ msg: 'There is no event found' })
         }
-        res.json(profile)
+        res.json(event)
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server Error')

@@ -11,7 +11,7 @@ export default function LandingPage() {
                 {/* <h2>Let's make the world a better place</h2> */}
                 <h2>Let's get together and make the world a better place</h2>
             </MainHeadings>
-            <Authentication>
+            <Authentication>                
                 <button>Login</button>
                 <button>Register</button>
             </Authentication>
@@ -23,7 +23,7 @@ const MainContainer = styled.section`
     width: 100vw;
     height: 100vh;
     position: relative;    
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url(${banner});
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url(${banner});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -63,12 +63,12 @@ const Authentication = styled.div`
     align-items: center;
 
     button {
-        width: 200px;
+        width: 180px;
         margin-bottom: 40px;
         height: 40px;
         font-size: 1rem;
         border: 1px solid #000;
         border-radius: 25px;       
-        /* background-color: #5AA2CC; */
-    }
+        /* background-color: #7DC81F; */
+    }    
 `

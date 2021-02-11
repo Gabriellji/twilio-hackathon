@@ -32,7 +32,7 @@ const MainContainer = styled.section`
             border: 2px solid white;
             background-color: #7DC81F;
             position: relative;
-            top: 25%;
+            top: 10%;
             border-radius: 15px;
             color: white;
             font-family: 'Nunito', sans-serif;
@@ -91,7 +91,7 @@ class MyEvents extends Component {
       }
 
       componentDidMount() {
-        fetch(``)
+        fetch(`http://localhost:5000/event/all_events`)
           .then(res => res.json())
           .then(json => {
             this.setState({
@@ -101,6 +101,11 @@ class MyEvents extends Component {
           })
         }
     render(){
+        let { isLoaded, items } = this.state;
+        if (!isLoaded) {
+          return <div>Almost there...</div>;
+        }
+        else {
     return (
         <MainContainer>
             <TitleContainer>  
@@ -110,11 +115,16 @@ class MyEvents extends Component {
             </TitleContainer>
             <MyEventsListContainer/>
                 <MyEventList>
-                    <h1>Does it look like a glass effect?</h1>
+                    {items.map(item => (
+                        <>
+                        <p>{item.what_to_bring}</p>
+                        </>
+                        ))}
                 </MyEventList> 
                     <button>Back to map</button>
         </MainContainer>
     )
     }
+}
 }
 export default MyEvents

@@ -4,23 +4,22 @@ import banner from '../../assets/banner2.jpg';
 import {Link} from 'react-router-dom'
 
 export default function LandingPage() {
-  return (
-    <MainContainer>
-      <MainHeadings>
-        <h1>Keep it clean!</h1>
-        {/* <h2>Let's make the world a better place</h2> */}
-        <h2>Let's get together and make the world a better place</h2>
-      </MainHeadings>
-      <Authentication>
-        <Link to="/login">
-          <button>LOG IN</button>
-        </Link>
-        <Link to="/register">
-          <button>REGISTER</button>
-        </Link>
-      </Authentication>
-    </MainContainer>
-  );
+
+
+    return (
+        <MainContainer>
+            <MainHeadings>
+                <h1>Keep it clean!</h1>
+                {/* <h2>Let's make the world a better place</h2> */}
+                <h2>Let's get together and make the world a better place</h2>
+            </MainHeadings>
+            <Authentication>                
+                <button><Link to='/login'>Login</Link></button>
+                <button><Link to='/register'>Register</Link></button>
+            </Authentication>
+        </MainContainer>
+    )
+
 }
 
 const MainContainer = styled.section`

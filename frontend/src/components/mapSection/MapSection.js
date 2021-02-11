@@ -24,7 +24,7 @@ export default function MapSection() {
 }
 
 const MapWrapper = styled.div`
-  max-width: 100vh;  
+  max-width: 100vw;  
   height: 100%;
   display: flex;
   flex-direction: column;

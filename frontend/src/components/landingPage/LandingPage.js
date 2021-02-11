@@ -1,24 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import banner from '../../assets/banner2.jpg';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 export default function LandingPage() {
 
-
-    return (
-        <MainContainer>
-            <MainHeadings>
-                <h1>Keep it clean!</h1>
-                {/* <h2>Let's make the world a better place</h2> */}
-                <h2>Let's get together and make the world a better place</h2>
-            </MainHeadings>
-            <Authentication>                
-                <button><Link to='/login'>Login</Link></button>
-                <button><Link to='/register'>Register</Link></button>
-            </Authentication>
-        </MainContainer>
-    )
+  return (
+    <MainContainer>
+      <MainHeadings>
+        <h1>Keep it clean!</h1>
+        {/* <h2>Let's make the world a better place</h2> */}
+        <h2>Let's get together and make the world a better place</h2>
+      </MainHeadings>
+      <Authentication>
+        <Link to="/login">
+          <button>Log In</button>
+        </Link>
+        <Link to="/register">
+          <button>Register</button>
+        </Link>
+      </Authentication>
+    </MainContainer>
+  );
 
 }
 
@@ -26,8 +29,7 @@ const MainContainer = styled.section`
   width: 100vw;
   height: 100vh;
   position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-    url(${banner});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url(${banner});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

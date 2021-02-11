@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const LogInForm = () => {
-  const [status, setStatus] = useState("LOG IN");
+  const [status, setStatus] = useState("Log In");
   const [sentMessage, setSentMessage] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -16,6 +16,7 @@ const LogInForm = () => {
     };
 
     console.log(details);
+
     fetch('http://localhost:5000/auth', {
       method: 'POST',
       headers: new Headers({
@@ -33,6 +34,7 @@ const LogInForm = () => {
         else {setSentMessage("ERROR")}
       }). then(data=> console.log(data))
 };
+
   return (
     <SendMessageWrapper>
       {sentMessage ? (
@@ -44,26 +46,14 @@ const LogInForm = () => {
           </button>
         </div>
       ) : (
-        <FormWrapper>
-          <form onSubmit={handleSubmit}>
-            <h2>LOG IN</h2>
-
-            <Email>
-              <input type="email" id="email" placeholder="email" required />
-            </Email>
-
-            <NameSection>
-              <input
-                type="text"
-                id="password"
-                placeholder="password"
-                required
-              />
-            </NameSection>
-
-            <button type="submit">{status}</button>
-          </form>
+        
+        <FormWrapper onSubmit={handleSubmit}>
+          <h2>User Login</h2>           
+          <input type="email" id="email" placeholder="Email" required />           
+          <input type="text" id="password" placeholder="Password" required />
+          <button type="submit">{status}</button>
         </FormWrapper>
+        
       )}
     </SendMessageWrapper>
   );
@@ -77,52 +67,69 @@ export default LogInForm;
 // text-align: center;
 // `
 const SendMessageWrapper = styled.div`
-  width: 100%;
-  height: auto;
+  /* width: 100vh; */
+  /* height: auto; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
+  padding: 10%;
+  /* background-color: lightgray; */
 `;
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: right;
   align-items: center;
-  width: 60%;
+  width: 100%;
   border-radius: 10px;
   background-color: white;
+  padding: 10%;
 
-  button {
-    width: 30%;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 10px;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
-`;
 
-const NameSection = styled.div`
   input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  button {    
+    width: 100%;
+    margin-bottom: 40px;
+    height: 30px;
+    font-size: 1rem;
+    border: 1px solid #7DC81F;
+    border-radius: 25px;
+    background-color: #7DC81F;
   }
 `;
 
-const Email = styled.div`
-  input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-`;
+// const NameSection = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
+
+// const Email = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
 const Topic = styled.div`
   select {

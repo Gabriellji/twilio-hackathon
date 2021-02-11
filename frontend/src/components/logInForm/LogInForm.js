@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from 'react-router-dom';
 import { MyContext } from "../../context/ContextProvider";
 import styled from "styled-components";
 
@@ -30,33 +31,37 @@ const LogInForm = () => {
         password: details.password,
       }),
     })
+      .then((response) => {
+        if (response.status === 200) {
+          setSentMessage("SENT");
+        } else {
+          setSentMessage("ERROR");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        window.localStorage.setItem('userScore', data.token);
+        context.setToken(data.token)
+      });
 
-    .then(response => {
-      if (response.status === 200) {
-        setSentMessage("SENT")
-      }
-      else {setSentMessage("ERROR")}
-      return response.json()
-    }). then(data=> context.setToken(data.token))
-
-      // .then((response) => {
-      //   if (response.status === 200) {
-      //     setSentMessage("SENT");
-      //   } else {
-      //     setSentMessage("ERROR");
-      //   }
-      // })
-      // .then((data) => {
-      //   console.log(data)
-      //   // context.setToken(data.token);
-      // });
+    // .then((response) => {
+    //   if (response.status === 200) {
+    //     setSentMessage("SENT");
+    //   } else {
+    //     setSentMessage("ERROR");
+    //   }
+    // })
+    // .then((data) => {
+    //   console.log(data)
+    //   // context.setToken(data.token);
+    // });
   };
 
   return (
     <SendMessageWrapper>
       {sentMessage ? (
         <div>
-          {sentMessage === "SENT" && <p>HERE WE SEE MAIN MAP SECTION</p>}
+          {sentMessage === "SENT" && <Redirect to="/mapSection" />}
           {sentMessage === "ERROR" && <p>WRONG PASSWORD</p>}
           <button onClick={() => setSentMessage(false)}>
             {sentMessage === "SENT" ? "LOG OUT" : "TRY AGAIN"}

@@ -4,6 +4,7 @@ import banner from '../../assets/banner2.jpg';
 import {Link} from 'react-router-dom';
 
 export default function LandingPage() {
+
   return (
     <MainContainer>
       <MainHeadings>
@@ -21,6 +22,7 @@ export default function LandingPage() {
       </Authentication>
     </MainContainer>
   );
+
 }
 
 const MainContainer = styled.section`

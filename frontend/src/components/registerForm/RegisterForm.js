@@ -1,25 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
-
 const RegisterForm = () => {
   const [status, setStatus] = useState("Register");
-  const [sentMessage, setSentMessage] = useState(false);
-
-  const [is_checked, setSmsNotification] = useState(false);
-
-  
+  const [sentMessage, setSentMessage] = useState("");
+  const [is_checked, setSmsNotification] = useState(true);
+  let details = {};
   const handleSmsNotification = () => {
     setSmsNotification(!is_checked);
     console.log(is_checked);
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const getDataFromUser = async e => {
     setStatus("Registering...");
     const { name, email, phone, city, cityArea, password } = e.target.elements;
-
-    let details = {
+    details = {
       name: name.value,
       email: email.value,
       phone: phone.value,
@@ -28,23 +21,32 @@ const RegisterForm = () => {
       password: password.value,
       is_checked,
     };
-
+  };
+  const sendDataToBackend = async () => {
     console.log(details);
-    let response = await fetch(
-      `http://localhost:5000/register`,
-
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(details),
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify({
+        name: details.name,
+        email: details.email,
+        city: details.city,
+        password: details.password,
+        phone: details.phone,
+        is_checked: details.is_checked,
+      }),
+    }).then(res => {
+      if(res.status===200){
+        setSentMessage("SENT")
       }
-    );
-
-    setStatus("Submit");
-    let result = await response.json();
-    setSentMessage(result.status);
+      else{setSentMessage("ERROR")}
+    });
+  };
+  const handleSubmit = async e => {
+    e.preventDefault();
+    getDataFromUser(e).then(sendDataToBackend());
   };
   return (
     <SendMessageWrapper>
@@ -80,13 +82,13 @@ const RegisterForm = () => {
 
           <button type="submit">{status}</button>
         </FormWrapper>        
+
+       
       )}
     </SendMessageWrapper>
   );
 };
-
 export default RegisterForm;
-
 // const Pr = styled.div`
 // height: 20px;
 // background-color: yellow;
@@ -101,8 +103,7 @@ const SendMessageWrapper = styled.div`
   justify-content: center;
   padding: 10%;
 `;
-
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

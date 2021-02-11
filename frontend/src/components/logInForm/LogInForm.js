@@ -16,30 +16,33 @@ const LogInForm = () => {
     };
 
     console.log(details);
-    let response = await fetch(
-      `http://localhost:5000/auth`,
 
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(details),
-      }
-    );
+    fetch('http://localhost:5000/auth', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        email: details.email,
+        password: details.password
+      })
+    }) 
+      .then(response => {
+        if (response.status === 200) {
+          setSentMessage("SENT")
+        }
+        else {setSentMessage("ERROR")}
+      }). then(data=> console.log(data))
+};
 
-    setStatus("Log In");
-    let result = await response.json();
-    setSentMessage(result.status);
-  };
   return (
     <SendMessageWrapper>
       {sentMessage ? (
         <div>
           {sentMessage === "SENT" && <p>HERE WE SEE MAIN MAP SECTION</p>}
-          {sentMessage === "ERROR" && <p>SOMETHING WENT WRONG</p>}
+          {sentMessage === "ERROR" && <p>WRONG PASSWORD</p>}
           <button onClick={() => setSentMessage(false)}>
-            TRY AGAIN PLEASE
+            {sentMessage==="SENT" ? "LOG OUT" : "TRY AGAIN"}
           </button>
         </div>
       ) : (

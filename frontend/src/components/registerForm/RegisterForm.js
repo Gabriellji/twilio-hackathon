@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from 'react-router-dom';
 import styled from "styled-components";
 const RegisterForm = () => {
   const [status, setStatus] = useState("Register");
@@ -52,9 +53,7 @@ const RegisterForm = () => {
     <SendMessageWrapper>
       {sentMessage ? (
         <div>
-          {sentMessage === "SENT" && (
-            <p>THANK YOU! WE'LL GET BACK TO YOU ASAP</p>
-          )}
+          {sentMessage === "SENT" && <Redirect to="/login"/>}
           {sentMessage === "ERROR" && (
             <p>SOMETHING WENT WRONG. TRY AGAIN PLEASE</p>
           )}

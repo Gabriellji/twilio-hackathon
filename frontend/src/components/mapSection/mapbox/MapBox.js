@@ -1,46 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import styled from "styled-components";
-// import { theme } from "../../../../data/theme";
 import mapboxgl from "mapbox-gl";
 import { stores } from "./helper/fakeData";
-// import { textData } from "../../../../data/textData";
-import Popup from "./popup/Popup";
-import Tab from "./tab/Tab";
-// import Text from "../../../atoms/text/Text";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-
-const StyledMapBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  ${'' /* gap: ${theme.spacer}; */}
-  ${'' /* margin: auto calc(3 * ${theme.spacer}) calc(3 * ${theme.spacer}); */}
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-`;
 
 const StyledMapContainer = styled.div`
   width: 80vw;
   height: 80vw;
-  ${'' /* margin-bottom: calc(3* ${theme.spacer}); */}
-  /* @media (min-width: 768px) {
-    width: 40%;
-    height: 800px
-  } */
   .mapboxgl-popup-close-button {
     display: none;
-  }
-`;
-
-const StyledSidebar = styled.div`
-  width: 100%;
-  height: 800px;
-  @media (min-width: 768px) {
-    width: 40%;
   }
 `;
 
@@ -59,14 +28,8 @@ const MapBox = (props) => {
     });
 
     setMap(map);
-   
-
-    // stores.features.map((store, i) => {
-    //   return (store.properties.key = i);
-    // });
 
     map.on("load", function () {
-     
       map.loadImage(
         "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
         function (error, image) {
@@ -93,15 +56,6 @@ const MapBox = (props) => {
     });
 
     map.on("click", "random-points-layer", (e) => {
-      if (e.features.length) {
-        const feature = e.features[0];
-        const popupNode = document.createElement("div");
-        ReactDOM.render(<Popup router={props} feature={feature} />, popupNode);
-        popUpRef.current
-          .setLngLat(feature.geometry.coordinates)
-          .setDOMContent(popupNode)
-          .addTo(map);
-      }
       map.flyTo({
         center: e.features[0].geometry.coordinates,
         zoom: 15,
@@ -122,39 +76,10 @@ const MapBox = (props) => {
     return () => map.remove();
   }, []);
 
-//   const handleClick = (e) => {
-//     for (let i = 0; i < stores.features.length; i++) {
-//       if (e.target.id === "listing-" + stores.features[i].properties.key) {
-//         const clickedListing = stores.features[i].geometry.coordinates;
-//         myMap.flyTo({
-//           center: clickedListing,
-//           zoom: 15,
-//           essential: true,
-//         });
-
-//         const feature = stores.features[i];
-//         const popupNode = document.createElement("div");
-//         setTimeout(() => {
-//           ReactDOM.render(
-//             <Popup router={props} feature={feature} />,
-//             popupNode
-//           );
-//           popUpRef.current
-//             .setLngLat(feature.geometry.coordinates)
-//             .setDOMContent(popupNode)
-//             .addTo(myMap);
-//         }, 1000);
-//       }
-//     }
-//   };
-
   return (
-      <>
-        <StyledMapContainer ref={mapContainerRef} />
-        {/* <div id="listings"> */}
-        {/* </div> */}
-      </>
-
+    <>
+      <StyledMapContainer ref={mapContainerRef} />
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { MyContext } from "../../context/ContextProvider";
 import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 const EventForm = () => {
   const context = useContext(MyContext);
@@ -73,9 +74,7 @@ const EventForm = () => {
     <SendMessageWrapper>
       {sentMessage ? (
         <div>
-          {sentMessage === "SENT" && (
-            <p>THANK YOU! THE EVENT HAS BEEN ADDED TO YOUR LIST</p>
-          )}
+          {sentMessage === "SENT" && <Redirect to="/mapSection"/>}
           {sentMessage === "ERROR" && <p>SOMETHING WENT WRONG </p>}
           <button onClick={() => setSentMessage(false)}>
             TRY AGAIN PLEASE

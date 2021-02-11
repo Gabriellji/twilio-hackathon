@@ -25,9 +25,9 @@ function Item(props) {
         setIsOpen(prevState);
     };   
     
-    const handleClick = () => {
-        console.log('hello');
-    }
+    // const handleClick = () => {
+    //     console.log('hello');
+    // }
   
     return (
         <motion.li 
@@ -62,7 +62,7 @@ function Item(props) {
 
                             {/* This is the join button that connects to the map  */}
                             <Link to="/myEvents">
-                                <JoinButton onClick={handleClick}>Join</JoinButton> 
+                                <JoinButton id={props.id} onClick={(e) => props.onClick(e)}>Join</JoinButton> 
                             </Link>
                         </motion.div>
                 }

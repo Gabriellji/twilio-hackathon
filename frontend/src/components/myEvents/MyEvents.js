@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
@@ -92,7 +93,7 @@ class MyEvents extends Component {
       }
 
       componentDidMount() {
-        fetch(`http://localhost:5000/event/all_events`)
+        fetch(`http://localhost:5000/event/my_events`)
           .then(res => res.json())
           .then(json => {
             this.setState({
@@ -118,7 +119,7 @@ class MyEvents extends Component {
                 <MyEventList>
                     {items.map(item => (
                         <>
-                        <p>{item.what_to_bring}</p>
+                        <p>{item.city}</p>
                         </>
                         ))}
                 </MyEventList> 

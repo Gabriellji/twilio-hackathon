@@ -80,7 +80,7 @@ router.post(
         //     ...req.body,
         // }
         try {
-            // console.log(req.user)
+            const { event_name, city, date, time } = req.body
             const event = await Event.create({
                 user: req.user.id,
                 name: req.user.info[0],
@@ -96,7 +96,7 @@ router.post(
             user['user_events'].push(event)
 
             await user.save()
-            get(req.body.event_name, req.body.date, req.body.time)
+            get(event_name, city, date, time)
             res.status(201).json(event)
         } catch (err) {
             console.error(err.message)

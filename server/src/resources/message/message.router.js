@@ -2,12 +2,12 @@ const accountSid = process.env.SID;
 const authToken = process.env.AUTH; 
 const client = require('twilio')(accountSid, authToken); 
  
-const get = (name, date, time) => {
+const get = (name, city, date, time) => {
   client.messages 
       .create({ 
-         body: `New event ${name} is coming up on ${date} at ${time}`, 
-         from: 'whatsapp:+14155238886',       
-         to: 'whatsapp:+375291408444' 
+         body: `New event ${name} is coming up in ${city} on ${date} at ${time}. Visit the app for more info. Keep it clean <3`, 
+         from: `whatsapp:${process.env.TWILIO_NUMBER}`,       
+         to: `whatsapp:${process.env.NUMBER}` 
        }) 
       .then(message => console.log(message.sid)) 
       .done();

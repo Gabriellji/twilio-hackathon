@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const EventForm = () => {
   const context = useContext(MyContext);
-  const [status, setStatus] = useState("Create an event");
+  const [status, setStatus] = useState("Create event");
   const [sentMessage, setSentMessage] = useState(false);
 
   const handleSubmit = async (e) => {

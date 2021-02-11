@@ -37,7 +37,7 @@ const MapWrapper = styled.div`
 const EventButton = styled.button`
     /* width: 100%; */
     width: 250px;
-    margin-bottom: 40px;
+    margin: 20px 0;
     height: 40px;
     font-size: 1.2rem;
     font-weight: 800;

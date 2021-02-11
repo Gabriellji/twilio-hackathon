@@ -7,12 +7,14 @@ import styled from "styled-components";
 
 export default function MapSection() {
     return (
-        <MapWrapper>
-            <MapBox/>
+        <MapWrapper>          
 
             <Link to="/myEvents">
                 <EventButton>My events</EventButton>
-            </Link>            
+            </Link> 
+
+            <MapBox/>  
+
             <Link to="/createEvent">
                 <EventButton>Create an event</EventButton>
             </Link>            
@@ -37,7 +39,7 @@ const MapWrapper = styled.div`
 const EventButton = styled.button`
     /* width: 100%; */
     width: 250px;
-    margin: 20px 0;
+    margin: 40px 0;
     height: 40px;
     font-size: 1.2rem;
     font-weight: 800;

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const JoinButton = styled.button`
     width: 80px;
@@ -22,7 +23,11 @@ function Item(props) {
     const toggleOpen = () => {
         let prevState = !isOpen;
         setIsOpen(prevState);
-    };    
+    };   
+    
+    const handleClick = () => {
+        console.log('hello');
+    }
   
     return (
         <motion.li 
@@ -56,7 +61,9 @@ function Item(props) {
                             <p className="join-event-row">{props.item.description}</p> 
 
                             {/* This is the join button that connects to the map  */}
-                            <JoinButton>Join</JoinButton>
+                            <Link to="/myEvents">
+                                <JoinButton onClick={handleClick}>Join</JoinButton> 
+                            </Link>
                         </motion.div>
                 }
             </AnimatePresence>

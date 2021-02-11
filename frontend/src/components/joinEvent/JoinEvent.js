@@ -32,7 +32,7 @@ export default function JoinEvent() {
         className="join-event-container"
       >
         <JoinHeading>Join an existing event</JoinHeading>
-        {items && items.map((item) => <Item item={item} key={item.id} />)}
+        {items && items.map((item, index) => <Item item={item} key={index} />)}
       </motion.ul>
     </AnimateSharedLayout>
   );

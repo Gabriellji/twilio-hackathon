@@ -119,46 +119,6 @@ const MyEvents = () => {
       });
   }, []);
 
-<<<<<<< HEAD
-      componentDidMount() {
-        fetch(`http://localhost:5000/event/my_events`)
-          .then(res => res.json())
-          .then(json => {
-            this.setState({
-              isLoaded: true,
-              items: json
-            })
-          })
-        }
-    render(){
-        let { isLoaded, items } = this.state;
-        if (!isLoaded) {
-          return <div>Almost there...</div>;
-        }
-        else {
-    return (
-        <MainContainer>
-            <TitleContainer>  
-                <PageTitle>
-                    <p>My events</p>
-                </PageTitle>
-            </TitleContainer>
-            <MyEventsListContainer/>
-                <MyEventList>
-                    {items.map(item => (
-                        <>
-                        <p>{item.city}</p>
-                        </>
-                        ))}
-                </MyEventList> 
-                    <button><Link to="/mapSection">Back to map</Link></button>
-        </MainContainer>
-    )
-    }
-}
-}
-export default MyEvents
-=======
   return (
     <MainContainer>
       {!state.isLoaded ? (
@@ -187,4 +147,3 @@ export default MyEvents
   );
 };
 export default MyEvents;
->>>>>>> 152f95394cc29af9907dcdbab1276cec21247c69

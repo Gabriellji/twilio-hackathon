@@ -6,7 +6,8 @@ import Item from "./Item";
 
 export default function JoinEvent() {
   const [items, setAllItems] = useState("");
-
+  const [event, setEvent] = useState("");
+  const userLocalStorage = localStorage.getItem("userScore");
   const getAllEvents = () => {
     fetch(`http://localhost:5000/event/all_events`, {
       method: "GET",
@@ -20,6 +21,26 @@ export default function JoinEvent() {
       });
   };
 
+  const joinEvent = (event_id) => {
+    fetch(`http://localhost:5000/event/${event_id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": userLocalStorage,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setEvent(data);
+        console.log(event)
+      });
+  };
+
+  const clickHandler = (e) => {
+    const id = e.target.id;
+    joinEvent(id)
+  }
+
   useEffect(() => {
     getAllEvents();
   }, []);
@@ -32,7 +53,7 @@ export default function JoinEvent() {
         className="join-event-container"
       >
         <JoinHeading>Join an existing event</JoinHeading>
-        {items && items.map((item, index) => <Item item={item} key={index} />)}
+        {items && items.map((item, index) => <Item item={item} onClick={clickHandler} key={index} id={item._id}/>)}
       </motion.ul>
     </AnimateSharedLayout>
   );

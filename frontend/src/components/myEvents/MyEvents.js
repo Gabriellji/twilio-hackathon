@@ -26,7 +26,6 @@ const MyEvents = () => {
   const userLocalStorage = localStorage.getItem("userScore");
   const context = useContext(MyContext);
   const [state, setState] = useState(initialState);
-  console.log(context);
 
   useEffect(() => {
     fetch(`http://localhost:5000/event/my_events`, {
@@ -38,7 +37,6 @@ const MyEvents = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         setState({
           isLoaded: true,
           items: json,

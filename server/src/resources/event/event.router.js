@@ -109,7 +109,7 @@ router.post(
 // GET /event/:event_id
 // gets event based on its id
 
-router.get("/:event_id", auth, async (req, res) => {
+router.post("/events/:event_id", auth, async (req, res) => {
   try {
     const event = await Event.findOne({
       _id: req.params.event_id,
@@ -123,6 +123,7 @@ router.get("/:event_id", auth, async (req, res) => {
     });
 
     user["subscribed_events"].push(event);
+    console.log(user["subscribed_events"])
 
     await user.save();
     res.json(event);

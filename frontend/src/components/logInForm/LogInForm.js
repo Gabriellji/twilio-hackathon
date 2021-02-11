@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyContext } from "../../context/ContextProvider";
 import styled from "styled-components";
 
 const LogInForm = () => {
+  const context = useContext(MyContext);
   const [status, setStatus] = useState("Log In");
   const [sentMessage, setSentMessage] = useState(false);
 
@@ -17,23 +19,38 @@ const LogInForm = () => {
 
     console.log(details);
 
-    fetch('http://localhost:5000/auth', {
-      method: 'POST',
+    fetch("http://localhost:5000/auth", {
+      method: "POST",
       headers: new Headers({
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
+        // "x-auth-token":""
       }),
       body: JSON.stringify({
         email: details.email,
-        password: details.password
-      })
-    }) 
-      .then(response => {
-        if (response.status === 200) {
-          setSentMessage("SENT")
-        }
-        else {setSentMessage("ERROR")}
-      }). then(data=> console.log(data))
-};
+        password: details.password,
+      }),
+    })
+
+    .then(response => {
+      if (response.status === 200) {
+        setSentMessage("SENT")
+      }
+      else {setSentMessage("ERROR")}
+      return response.json()
+    }). then(data=> context.setToken(data.token))
+
+      // .then((response) => {
+      //   if (response.status === 200) {
+      //     setSentMessage("SENT");
+      //   } else {
+      //     setSentMessage("ERROR");
+      //   }
+      // })
+      // .then((data) => {
+      //   console.log(data)
+      //   // context.setToken(data.token);
+      // });
+  };
 
   return (
     <SendMessageWrapper>
@@ -42,18 +59,16 @@ const LogInForm = () => {
           {sentMessage === "SENT" && <p>HERE WE SEE MAIN MAP SECTION</p>}
           {sentMessage === "ERROR" && <p>WRONG PASSWORD</p>}
           <button onClick={() => setSentMessage(false)}>
-            {sentMessage==="SENT" ? "LOG OUT" : "TRY AGAIN"}
+            {sentMessage === "SENT" ? "LOG OUT" : "TRY AGAIN"}
           </button>
         </div>
       ) : (
-        
         <FormWrapper onSubmit={handleSubmit}>
-          <h2>User Login</h2>           
-          <input type="email" id="email" placeholder="Email" required />           
+          <h2>User Login</h2>
+          <input type="email" id="email" placeholder="Email" required />
           <input type="text" id="password" placeholder="Password" required />
           <button type="submit">{status}</button>
         </FormWrapper>
-        
       )}
     </SendMessageWrapper>
   );
@@ -102,14 +117,14 @@ const FormWrapper = styled.form`
     padding: 0 10px;
   }
 
-  button {    
+  button {
     width: 100%;
     margin-bottom: 40px;
     height: 30px;
     font-size: 1rem;
-    border: 1px solid #7DC81F;
+    border: 1px solid #7dc81f;
     border-radius: 25px;
-    background-color: #7DC81F;
+    background-color: #7dc81f;
   }
 `;
 

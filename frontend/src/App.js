@@ -3,8 +3,6 @@ import LogInForm from "./components/logInForm/LogInForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from "./components/landingPage/LandingPage";
-import Login from './components/login/Login';
-import Register from './components/register/Register';
 import MapSection from './components/mapSection/MapSection';
 import MyEvents from './components/myEvents/MyEvents';
 import CreateEvent from './components/createEvent/CreateEvent';
@@ -25,7 +23,7 @@ function App() {
       </Switch>
 
       {/* <LandingPage />      */}
-
+<EventForm />
     </div>
   );
 }

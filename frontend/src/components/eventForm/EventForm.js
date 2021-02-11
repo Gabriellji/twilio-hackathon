@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyContext } from "../../context/ContextProvider";
 import styled from "styled-components";
 
 const EventForm = () => {
+  const context = useContext(MyContext);
   const [status, setStatus] = useState("Create an event");
   const [sentMessage, setSentMessage] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Creating...");
-    const { date, time, city, address, description, whatToBring } = e.target.elements;
+    const {
+      date,
+      time,
+      city,
+      address,
+      description,
+      whatToBring,
+      eventName,
+    } = e.target.elements;
 
     let details = {
       date: date.value,
@@ -16,25 +26,48 @@ const EventForm = () => {
       city: city.value,
       address: address.value,
       description: description.value,
-      whatToBring: whatToBring.value,
+      what_to_bring: whatToBring.value,
+      event_name: eventName.value,
     };
 
     console.log(details);
-    let response = await fetch(
+    fetch(
       `http://localhost:5000/event`,
 
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(details),
-      }
-    );
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "x-auth-token": context.token,
+        }),
 
-    setStatus("Submit");
-    let result = await response.json();
-    setSentMessage(result.status);
+        body: JSON.stringify({
+          date: date.value,
+          time: time.value,
+          city: city.value,
+          address: address.value,
+          description: description.value,
+          what_to_bring: whatToBring.value,
+          event_name: eventName.value,
+        }),
+      }
+    )
+      .then((response) => {
+        if (response.status === 201) {
+          setSentMessage("SENT");
+        } else {
+          setSentMessage("ERROR");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data.token)
+        console.log(context.token)
+      });
+
+    // setStatus("Submit");
+    // let result = await response.json();
+    // setSentMessage(result.status);
   };
   return (
     <SendMessageWrapper>
@@ -43,17 +76,18 @@ const EventForm = () => {
           {sentMessage === "SENT" && (
             <p>THANK YOU! THE EVENT HAS BEEN ADDED TO YOUR LIST</p>
           )}
-          {sentMessage === "ERROR" && (
-            <p>SOMETHING WENT WRONG </p>
-          )}
+          {sentMessage === "ERROR" && <p>SOMETHING WENT WRONG </p>}
           <button onClick={() => setSentMessage(false)}>
-          TRY AGAIN PLEASE
+            TRY AGAIN PLEASE
           </button>
         </div>
       ) : (
         <FormWrapper>
           <form onSubmit={handleSubmit}>
             <h2>EVENT FORM</h2>
+            <NameSection>
+              <input type="text" id="eventName" placeholder="Title" required />
+            </NameSection>
 
             <NameSection>
               <input type="date" id="date" placeholder="Date" required />
@@ -76,13 +110,16 @@ const EventForm = () => {
             </NameSection>
 
             <NameSection>
-              
-              <input type="text" id="description" placeholder='Description' required />
+              <input
+                type="text"
+                id="description"
+                placeholder="Description"
+                required
+              />
             </NameSection>
 
             <NameSection>
-              
-              <input type="text" id="whatToBring" placeholder='What To Bring' />
+              <input type="text" id="whatToBring" placeholder="What To Bring" />
             </NameSection>
 
             <button type="submit">{status}</button>

@@ -151,22 +151,22 @@ const FormWrapper = styled.form`
 //   }
 // `;
 
-const Topic = styled.div`
-  select {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-`;
+// const Topic = styled.div`
+//   select {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
-const Message = styled.div`
-  textarea {
-    width: 300px;
-    height: 100px;
-    margin: 0 15px;
-  }
-`;
+// const Message = styled.div`
+//   textarea {
+//     width: 300px;
+//     height: 100px;
+//     margin: 0 15px;
+//   }
+// `;
 
 // const SendMessageButton = styled.button`
 // font-size: ${({ Initial }) => Initial ? '50px': '20px'}

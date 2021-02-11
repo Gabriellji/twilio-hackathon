@@ -59,15 +59,14 @@ const MapBox = (props) => {
     });
 
     setMap(map);
+   
 
-    
-
-        // stores.features.map((store, i) => {
+    // stores.features.map((store, i) => {
     //   return (store.properties.key = i);
     // });
 
     map.on("load", function () {
-      
+     
       map.loadImage(
         "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
         function (error, image) {

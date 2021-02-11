@@ -39,7 +39,10 @@ const LogInForm = () => {
         }
         return response.json();
       })
-      .then((data) => context.setToken(data.token));
+      .then((data) => {
+        window.localStorage.setItem('userScore', data.token);
+        context.setToken(data.token)
+      });
 
     // .then((response) => {
     //   if (response.status === 200) {

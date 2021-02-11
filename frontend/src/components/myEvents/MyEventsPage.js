@@ -16,7 +16,8 @@ const MyEventsListContainer = styled.section`
   border-radius: 15px;
   background-color: white;
   top: 10%;
-  opacity: 0.9;
+  opacity: 1;
+  box-shadow: 0px 0px 10px lightgray;
 `;
 const MainContainer = styled.section`
   width: 100vw;
@@ -48,16 +49,16 @@ const MainContainer = styled.section`
   }
 
   button {
-    width: 55%;
-    height: 7%;
-    border: 2px solid white;
+    width: 70%;
+    height: 5%;
+    border: none;
     background-color: #7dc81f;
     position: absolute;
     top: 90vh;
-    border-radius: 15px;
+    border-radius: 25px;
     color: white;
     font-family: "Nunito", sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     box-shadow: 3px 3px 5px grey;
   }
 `;
@@ -97,7 +98,7 @@ function MyEventsPage () {
             <MyEvents/>
             </MyEventsListContainer>
           <button>
-            <Link to="/mapSection">Back to map</Link>
+            <Link style={{textDecoration:"none", color:"white"}} to="/mapSection">Back to map</Link>
           </button>
     </MainContainer>
   );

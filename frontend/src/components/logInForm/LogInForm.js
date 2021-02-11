@@ -109,6 +109,7 @@ const FormWrapper = styled.form`
   border-radius: 10px;
   background-color: white;
   padding: 10%;
+  box-shadow: 0px 0px 10px lightgray;
 
   h2 {
     font-size: 2rem;
@@ -130,6 +131,8 @@ const FormWrapper = styled.form`
     border: 1px solid #7dc81f;
     border-radius: 25px;
     background-color: #7dc81f;
+    color: white;
+    box-shadow: 2px 2px 5px grey;
   }
 `;
 

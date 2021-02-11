@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import {Link} from 'react-router-dom'
 
 const MainContainer = styled.section`    
     width: 100vw;
@@ -121,7 +122,7 @@ class MyEvents extends Component {
                         </>
                         ))}
                 </MyEventList> 
-                    <button>Back to map</button>
+                    <button><Link to="/mapSection">Back to map</Link></button>
         </MainContainer>
     )
     }

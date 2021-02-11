@@ -1,29 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components';
 
-
-export default function MyEvents() {
-    return (
-        <MainContainer>
-            <TitleContainer>  
-                <PageTitle>
-                    <p>My events</p>
-                </PageTitle>
-            </TitleContainer>
-            <MyEventsListContainer>
-                </MyEventsListContainer>
-            <button>Back to map</button>
-        </MainContainer>
-    )
-}
 const MainContainer = styled.section`    
     width: 100vw;
     height: 100vh;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(219,250,246,1) 0%, rgba(35,118,205,1) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(0deg, rgba(219,250,246,1) 0%, rgba(35,118,205,1) 100%);
+
+    &:after{
+        content: "";
+        background: white;
+        background-repeat: no-repeat;
+	    background-size: cover;
+	    width: 100%;
+	    height: 100%;
+	    background-attachment: scroll;
+	    opacity:1;
+	    top: 0;
+	    left: 0;
+	    bottom: 0;
+	    right: 0;
+	    position: fixed;
+	    z-index: -2;
+        }
 
         button{
             width: 55%;
@@ -50,34 +51,70 @@ const TitleContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    `
+`
 
 const PageTitle = styled.div`
     position: relative;
+    align-items:center;
     padding: 10px;
     font-family: 'Nunito', sans-serif;
     font-size: 2.3rem;
     color: white;
-    
 `
 const MyEventsListContainer = styled.section`
     position: relative;
     width: 90%;
     height: 50%;
-    border: 2px solid #7DC81F;
+    box-shadow: 0px 0px 10px 5px black;
     border-radius: 15px;
     position: relative;
-    background-color: white;
+    background: rgb(149,149,149);
+    background: linear-gradient(0deg, rgba(149,149,149,1) 0%, rgba(251,251,251,1) 100%);
     top: 10%;
+    opacity:0.1;
+`
+const MyEventList =styled.article`
+    position: relative;
+    top:-35%;
+    opacity: 1;
+    z-index:2;
+`
     
-    `
-// const Glass = styled.div`
-//     position: relative;
-//     width: 100%;
-//     height: 100%;
-//     position: relative;
-//     border-radius: 15px;
-//     background-color: #e6e6e6;
-//     opacity: 0.1;
+class MyEvents extends Component {
 
-// `
+    constructor(props) {
+        super(props);
+        this.state = {
+          items: {},
+          isLoaded: false,
+        }
+      }
+
+      componentDidMount() {
+        fetch(``)
+          .then(res => res.json())
+          .then(json => {
+            this.setState({
+              isLoaded: true,
+              items: json
+            })
+          })
+        }
+    render(){
+    return (
+        <MainContainer>
+            <TitleContainer>  
+                <PageTitle>
+                    <p>My events</p>
+                </PageTitle>
+            </TitleContainer>
+            <MyEventsListContainer/>
+                <MyEventList>
+                    <h1>Does it look like a glass effect?</h1>
+                </MyEventList> 
+                    <button>Back to map</button>
+        </MainContainer>
+    )
+    }
+}
+export default MyEvents

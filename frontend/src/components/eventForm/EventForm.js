@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const EventForm = () => {
   const context = useContext(MyContext);
-  const [status, setStatus] = useState("Create an event");
+  const [status, setStatus] = useState("Create event");
   const [sentMessage, setSentMessage] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -82,49 +82,31 @@ const EventForm = () => {
           </button>
         </div>
       ) : (
-        <FormWrapper>
-          <form onSubmit={handleSubmit}>
-            <h2>EVENT FORM</h2>
-            <NameSection>
-              <input type="text" id="eventName" placeholder="Title" required />
-            </NameSection>
-
-            <NameSection>
-              <input type="date" id="date" placeholder="Date" required />
-            </NameSection>
-
-            <NameSection>
-              <input type="time" id="time" placeholder="Time" required />
-            </NameSection>
-
-            <NameSection>
-              <input type="text" id="city" placeholder="City" required />
-            </NameSection>
-            <NameSection>
-              <input
-                type="address"
-                id="address"
-                placeholder="Address"
-                required
-              />
-            </NameSection>
-
-            <NameSection>
-              <input
-                type="text"
-                id="description"
-                placeholder="Description"
-                required
-              />
-            </NameSection>
-
-            <NameSection>
-              <input type="text" id="whatToBring" placeholder="What To Bring" />
-            </NameSection>
-
+        
+          <FormWrapper onSubmit={handleSubmit}>
+            <h2>Event form</h2>            
+            <input type="text" id="eventName" placeholder="Title" required />            
+            <input type="date" id="date" placeholder="Date" required />           
+            <input type="time" id="time" placeholder="Time" required />           
+            <input type="text" id="city" placeholder="City" required />          
+            <input
+              type="address"
+              id="address"
+              placeholder="Address"
+              required
+            />          
+            <input
+              type="text"
+              id="description"
+              placeholder="Description"
+              required
+            />
+         
+            <input type="text" id="whatToBring" placeholder="What To Bring" />
+         
             <button type="submit">{status}</button>
-          </form>
-        </FormWrapper>
+          </FormWrapper>
+        
       )}
     </SendMessageWrapper>
   );
@@ -138,69 +120,83 @@ export default EventForm;
 // text-align: center;
 // `
 const SendMessageWrapper = styled.div`
-  width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
+  padding: 10%;
 `;
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: right;
   align-items: center;
-  width: 60%;
+  width: 100%;
   border-radius: 10px;
   background-color: white;
+  padding: 10%;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
 
   button {
-    width: 30%;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 10px;
+    width: 100%;
+    margin-bottom: 40px;
+    height: 30px;
+    font-size: 1rem;
+    border: 1px solid #7dc81f;
+    border-radius: 25px;
+    background-color: #7dc81f;
   }
 `;
 
-const NameSection = styled.div`
-  input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-`;
+// const NameSection = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
-const Email = styled.div`
-  input {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-`;
+// const Email = styled.div`
+//   input {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
-const Topic = styled.div`
-  select {
-    width: 300px;
-    border: 0;
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-`;
+// const Topic = styled.div`
+//   select {
+//     width: 300px;
+//     border: 0;
+//     margin: 15px;
+//     border-bottom: 1px solid black;
+//   }
+// `;
 
-const Message = styled.div`
-  textarea {
-    width: 300px;
-    height: 100px;
-    margin: 0 15px;
-  }
-`;
+// const Message = styled.div`
+//   textarea {
+//     width: 300px;
+//     height: 100px;
+//     margin: 0 15px;
+//   }
+// `;
 
 // const SendMessageButton = styled.button`
 // font-size: ${({ Initial }) => Initial ? '50px': '20px'}

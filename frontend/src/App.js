@@ -23,7 +23,8 @@ function App() {
       </Switch>
 
       {/* <LandingPage />      */}
- <EventForm />
+      {/* <EventForm /> */}
+
     </div>
   );
 }

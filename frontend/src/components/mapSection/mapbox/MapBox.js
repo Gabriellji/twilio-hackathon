@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 // import { theme } from "../../../../data/theme";
 import mapboxgl from "mapbox-gl";
-// import { stores } from "./helper/fakeData";
+import { stores } from "./helper/fakeData";
 // import { textData } from "../../../../data/textData";
 import Popup from "./popup/Popup";
 import Tab from "./tab/Tab";
@@ -59,50 +59,38 @@ const MapBox = (props) => {
     });
 
     setMap(map);
-
-    map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
-
-    const mainMarker = new mapboxgl.Marker({
-      color: "#ff6347",
-    })
-      .setLngLat([-0.118092, 51.509865])
-      .setPopup(
-        new mapboxgl.Popup({ closeOnClick: false }).setHTML(
-          `<p style="color: #33A0FF; text-align: center;">Lalala</p>`
-        )
-      )
-      .addTo(map);
+   
 
     // stores.features.map((store, i) => {
     //   return (store.properties.key = i);
     // });
 
-    // map.on("load", function () {
-    //   mainMarker.togglePopup();
-    //   map.loadImage(
-    //     "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
-    //     function (error, image) {
-    //       if (error) throw error;
-    //       map.addImage("custom-marker", image);
-    //       map.addSource("random-points-data", {
-    //         type: "geojson",
-    //         data: stores,
-    //       });
-    //       map.addLayer({
-    //         id: "random-points-layer",
-    //         type: "symbol",
-    //         source: "random-points-data",
-    //         layout: {
-    //           "icon-image": "custom-marker",
-    //           "text-field": ["get", "title"],
-    //           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-    //           "text-offset": [0, 1.25],
-    //           "text-anchor": "top",
-    //         },
-    //       });
-    //     }
-    //   );
-    // });
+    map.on("load", function () {
+     
+      map.loadImage(
+        "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
+        function (error, image) {
+          if (error) throw error;
+          map.addImage("custom-marker", image);
+          map.addSource("random-points-data", {
+            type: "geojson",
+            data: stores,
+          });
+          map.addLayer({
+            id: "random-points-layer",
+            type: "symbol",
+            source: "random-points-data",
+            layout: {
+              "icon-image": "custom-marker",
+              "text-field": ["get", "title"],
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-offset": [0, 1.25],
+              "text-anchor": "top",
+            },
+          });
+        }
+      );
+    });
 
     map.on("click", "random-points-layer", (e) => {
       if (e.features.length) {

@@ -45,7 +45,7 @@ const LogInForm = () => {
       ) : (
         
         <FormWrapper onSubmit={handleSubmit}>
-          <h2>Log In</h2>           
+          <h2>User Login</h2>           
           <input type="email" id="email" placeholder="Email" required />           
           <input type="text" id="password" placeholder="Password" required />
           <button type="submit">{status}</button>
@@ -96,6 +96,7 @@ const FormWrapper = styled.form`
     width: 100%;
     height: 30px;
     margin-bottom: 20px;
+    padding: 0 10px;
   }
 
   button {    

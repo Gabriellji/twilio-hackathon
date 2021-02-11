@@ -63,7 +63,7 @@ const RegisterForm = () => {
       ) : (
         
         <FormWrapper onSubmit={handleSubmit}>
-          <h2>Register</h2>            
+          <h2>Sign Up</h2>            
           <input type="text" id="name" placeholder="Name" required />           
           <input type="email" id="email" placeholder="Email" required />       
           <input type="text" id="password" placeholder="Password" required />       
@@ -122,6 +122,7 @@ const FormWrapper = styled.div`
     width: 100%;
     height: 30px;
     margin-bottom: 20px;
+    padding: 0 10px;
   }  
 
   button {    

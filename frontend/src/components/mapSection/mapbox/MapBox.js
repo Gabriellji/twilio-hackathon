@@ -27,10 +27,10 @@ const StyledMapContainer = styled.div`
   width: 80vw;
   height: 80vw;
   ${'' /* margin-bottom: calc(3* ${theme.spacer}); */}
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     width: 40%;
     height: 800px
-  }
+  } */
   .mapboxgl-popup-close-button {
     display: none;
   }
@@ -150,10 +150,10 @@ const MapBox = (props) => {
 
   return (
       <>
-      <StyledMapContainer ref={mapContainerRef} />
-        <div id="listings">
-        </div>
-        </>
+        <StyledMapContainer ref={mapContainerRef} />
+        {/* <div id="listings"> */}
+        {/* </div> */}
+      </>
 
   );
 };

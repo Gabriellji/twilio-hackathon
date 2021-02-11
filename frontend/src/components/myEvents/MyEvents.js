@@ -56,6 +56,17 @@ const MyEvents = () => {
       });
   }, []);
 
+  // const getCurl = () => {
+  //   fetch(`https://api.twilio.com/2010-04-01/Accounts/AC7befd8067507ecaa953f22f01f32c13a/Messages.json`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then(json => console.log(json))
+  // }
+
   return (
     <>
       {!state.isLoaded ? (

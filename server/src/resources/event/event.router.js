@@ -6,6 +6,8 @@ const { check, validationResult } = require('express-validator')
 const User = require('../user/user.model')
 const Event = require('../event/event.model')
 
+const get = require('../message/message.router')
+
 //Private
 // GET /event  
 // gets user events
@@ -94,7 +96,7 @@ router.post(
             user['user_events'].push(event)
 
             await user.save()
-
+            get(req.body.event_name, req.body.date, req.body.time)
             res.status(201).json(event)
         } catch (err) {
             console.error(err.message)

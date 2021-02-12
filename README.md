@@ -22,7 +22,7 @@ $ yarn install
 - [Install](#install)
 - [List of Contents](#list-of-contents)
 - [Purpose](#purpose)
-- [TempEra](#tempera)
+- [Keep It Clean](#kepp-it-clean)
 - [Wireframes Packages and Softwares used](#wireframes-packages-and-softwares-used)
 
 ## Project

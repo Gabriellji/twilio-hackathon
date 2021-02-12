@@ -3,7 +3,7 @@ const app = require("./app");
 
 const { connect } = require("./db/db.client");
 
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 connect(() => {
   app.listen(port, (err) => {

@@ -4,7 +4,7 @@
 
 <br />
 <p align="center">
-  <h1 align="center">"Keep it clean" mobile app</h1>
+  <h1 align="center">"Keep it clean!" mobile app</h1>
 
   <p align="center">
     <i>

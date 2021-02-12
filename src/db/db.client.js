@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const chalk = require('chalk')
 
 const connect = runServer => {
   mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
@@ -13,7 +12,7 @@ const connect = runServer => {
   db.on('error', console.error.bind(console, 'connection error'))
   db.once('open', () => {
     // we are connected
-    console.log(chalk.blue('we are connected'))
+    console.log('we are connected')
     runServer()
   })
 }

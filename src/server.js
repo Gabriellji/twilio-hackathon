@@ -1,13 +1,15 @@
-const { PORT } = require("./common/config");
+// const { PORT } = require("./common/config");
 const app = require("./app");
 
 const { connect } = require("./db/db.client");
 
+const port = process.env.port || 5000;
+
 connect(() => {
-  app.listen(PORT, (err) => {
+  app.listen(port, (err) => {
     if (err) {
       throw new Error(`An error occurred: ${err.message}`);
     }
-    console.log(`App is running on http://localhost:${PORT}`);
+    console.log(`App is running on http://localhost:${port}`);
   });
 });
